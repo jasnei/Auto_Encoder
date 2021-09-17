@@ -5,7 +5,7 @@ from torchvision import transforms
 from torchvision.datasets import MNIST
 from torchvision.utils import make_grid
 
-def get_dataset(root="../data/", batch_size=64, num_workers=4):
+def get_dataset(root="../data/", train_batch_size=64, test_batch_size=100, num_workers=4):
 
     train_data = MNIST(
         root=root,
@@ -26,7 +26,7 @@ def get_dataset(root="../data/", batch_size=64, num_workers=4):
 
     train_loader = Data.DataLoader(
         dataset=train_data_x,
-        batch_size=batch_size,
+        batch_size=train_batch_size,
         shuffle=True,
         num_workers=num_workers,
     )
@@ -36,7 +36,7 @@ def get_dataset(root="../data/", batch_size=64, num_workers=4):
 
     test_loader = Data.DataLoader(
         dataset=test_data_x,
-        batch_size=batch_size,
+        batch_size=test_batch_size,
         shuffle=False,
         num_workers=num_workers,
     )
