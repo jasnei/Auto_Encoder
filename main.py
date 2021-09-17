@@ -24,8 +24,8 @@ if __name__ == '__main__':
     train_loader, train_data_y, test_loader, test_data_y = get_dataset()
 
     lr = 3e-3
-    auto_encoder = AutoEncoder().cuda()
-    optimizer = optim.Adam(auto_encoder.parameters(), lr=lr)
+    auto_encoder_model = AutoEncoder().cuda()
+    optimizer = optim.Adam(auto_encoder_model.parameters(), lr=lr)
     criterion = nn.MSELoss()
 
     history = hl.History()
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         train_loss_epoch = 0
         for step, images in enumerate(train_loader):
             images = images.cuda()
-            _, output = auto_encoder(images)
+            _, output = auto_encoder_model(images)
             loss = criterion(output, images)
             optimizer.zero_grad()
             loss.backward()
@@ -45,5 +45,8 @@ if __name__ == '__main__':
             train_num = train_num + images.size(0)
         train_loss = train_loss_epoch / train_num
         history.log(epoch, train_loss=train_loss)
-        with canvas:
-            canvas.draw_plot(history['train_loss'])
+        # with canvas:
+        #     canvas.draw_plot(history['train_loss'])
+    torch.save({"state_dict": auto_encoder_model.state_dict(),}, "./checkpoint/auto_encoder.pth")
+    # auto_encoder.eval()
+    # _, test_de
