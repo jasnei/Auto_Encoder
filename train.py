@@ -43,8 +43,8 @@ if __name__ == '__main__':
             train_num = train_num + images.size(0)
         train_loss = train_loss_epoch / train_num
         history.log(epoch, train_loss=train_loss)
-        # with canvas:
-        #     canvas.draw_plot(history['train_loss'])
+        with canvas:
+            canvas.draw_plot(history['train_loss'])
+            
     torch.save({"state_dict": auto_encoder_model.state_dict(),}, "./checkpoint/auto_encoder.pth")
-    # auto_encoder.eval()
-    # _, test_de
+    print('Save model done!')
