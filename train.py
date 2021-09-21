@@ -19,7 +19,7 @@ from data import get_dataset
 
 if __name__ == '__main__':
 
-    train_loader, train_data_y, test_loader, test_data_y = get_dataset()
+    train_loader, train_data_y, test_loader, test_data_y = get_dataset(train_batch_size=128)
 
     lr = 3e-3
     auto_encoder_model = AutoEncoder().cuda()
@@ -28,17 +28,18 @@ if __name__ == '__main__':
 
     history = hl.History()
     canvas = hl.Canvas()
-    train_num = 0
-    val_num = 0
+    
     print("Training...")
     for epoch in range(10):
         train_loss_epoch = 0
+        train_num = 0
         for step, images in enumerate(train_loader):
             images = images.cuda()
             _, output = auto_encoder_model(images)
             loss = criterion(output, images)
             optimizer.zero_grad()
             loss.backward()
+            optimizer.step()
             train_loss_epoch += loss.item()
             train_num = train_num + images.size(0)
         train_loss = train_loss_epoch / train_num
