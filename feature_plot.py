@@ -24,6 +24,7 @@ if __name__ == '__main__':
     print(f"test_encoder.shape: {test_encoder.shape}")
 
     test_encoder_arr = test_encoder.data.numpy()
+    
     fig = plt.figure(figsize=(12, 8))
     ax_1 = Axes3D(fig)
     X = test_encoder_arr[:, 0]
