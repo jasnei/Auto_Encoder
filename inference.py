@@ -28,7 +28,7 @@ if __name__ == '__main__':
         img = img.data.numpy().reshape(28, 28)
         plt.imshow(img, 'gray')
         plt.axis('off')
-    plt.tight_layout()
+        plt.subplots_adjust(hspace=0.1, wspace=0.1)
     plt.show()
 
     plt.figure(figsize=(10, 10))
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         img = img.data.numpy().reshape(28, 28)
         plt.imshow(img, 'gray')
         plt.axis('off')
-    plt.tight_layout()
+        plt.subplots_adjust(hspace=0.1, wspace=0.1)
     plt.show()
 
 
