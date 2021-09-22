@@ -1,18 +1,7 @@
-
-from mpl_toolkits.mplot3d import Axes3D
 import hiddenlayer as hl
-from sklearn.manifold import TSNE
-from sklearn.svm import SVC
-from sklearn.decomposition import PCA
-from sklearn.metrics import classification_report, accuracy_score
 import torch
 from torch import nn
-import torch.nn.functional as F
-import torch.utils.data as Data
 import torch.optim as optim
-from torchvision import transforms
-from torchvision.datasets import MNIST
-from torchvision.utils import make_grid
 from model_design import AutoEncoder
 from data import get_dataset
 
@@ -28,7 +17,7 @@ if __name__ == '__main__':
 
     history = hl.History()
     canvas = hl.Canvas()
-    
+
     print("Training...")
     for epoch in range(10):
         train_loss_epoch = 0
